@@ -5,13 +5,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our New Year ✨</title>
-    <script>
-  const password = '06042024'; // set your password
-  let userPass = prompt('Enter password to view this page:');
-  if (userPass !== password) {
-    document.body.innerHTML = '<h1 style="text-align:center;margin-top:50px;">Access Denied ❌</h1>';
-  }
-</script>
+     <script>
+    // Prompt for password BEFORE showing any content
+    const password = '06042024'; // set your password
+    let userPass = prompt('Enter password to view this page:');
+    if(userPass === password){
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.style.display = 'block'; // show content if correct
+      });
+    } else {
+      document.body.innerHTML = '<h1>Access Denied ❌</h1>';
+    }
+  </script>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
