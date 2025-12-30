@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our New Year ✨</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pink: #ff4f81;
+            --purple: #7b2ff7;
+            --glass: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, #ff7eb3, #3a1c71);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(14px);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #da1e1e, #099fba);
+            -webkit-background-clip: text;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        /* Photo Carousel */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            margin-bottom: 25px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            /* prevents extra tall images */
+            object-fit: contain;
+            /* shows FULL image */
+            flex-shrink: 0;
+            border-radius: 18px;
+        }
+
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+        }
+
+        .controls button {
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            margin: 8px;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            transition: transform .2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hidden Sections */
+        section {
+            display: none;
+            margin-top: 25px;
+            animation: fade 1s ease;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-letter {
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .heart {
+            font-size: 2.8rem;
+            animation: pulse 1.1s infinite;
+            margin-top: 15px;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Hidden state */
+        .hidden-images {
+            filter: blur(18px);
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+            transition: all 1.2s ease;
+        }
+
+        /* Revealed state */
+        .show-images {
+            filter: blur(0);
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #fff, #ff7eb3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkleMove 1.5s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes sparkleMove {
+            from {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Heart Sparkles */
+        .heart-sparkle {
+            position: fixed;
+            font-size: 18px;
+            pointer-events: none;
+            animation: heartFloat 1.8s ease-out forwards;
+            z-index: 9999;
+            filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.8));
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0.3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Secret Heart (FIXED) */
+        #secretHeart {
+            font-size: 64px;
+            margin-top: 25px;
+            cursor: pointer;
+            display: none;
+            animation: heartPulse 1.2s infinite;
+            transition: transform 1.6s ease;
+            z-index: 10000;
+            position: relative;
+        }
+
+        @keyframes heartPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        /* Grow effect */
+        .heart-grow {
+            transform: scale(15);
+        }
+
+        /* Secret Message */
+        #secretMessage {
+            display: none;
+            margin-top: 30px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 25px;
+            border-radius: 20px;
+            animation: fadeIn 1.5s ease;
+            z-index: 10001;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="glass">
+            <h1>Happy New Year, My Cutie Pie 😘🩵</h1>
+            <p class="subtitle">Every moment with you made this year beautiful ❤️</p>
+            <button class="btn" onclick="revealSurprise()">Tap for Surprise ✨</button>
+            <div class="carousel hidden-images" id="surpriseBox">
+                <P> Our Memories of 2025 ⭐</P>
+
+
+                <!-- Carousel -->
+                <div class="carousel">
+                    <div class="carousel-track" id="track">
+                        <img src="image1.jpeg">
+                        <img src="image2.jpeg">
+                        <img src="image3.jpeg">
+                        <img src="image4.jpeg">
+                    </div>
+                    <div class="controls">
+                        <button onclick="moveSlide(-1)">‹</button>
+                        <button onclick="moveSlide(1)">›</button>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="openSection('countdown')">Countdown to Us ⏳</button>
+                <button class="btn" onclick="openSection('letter')">Open Love Letter 💌</button>
+
+                <!-- Countdown -->
+                <section id="countdown">
+                    <h2>New Beginnings 💫</h2>
+                    <p id="timer"></p>
+                </section>
+
+                <!-- Love Letter -->
+                <section id="letter" class="love-letter">
+                    <p>
+                        <b>My Bebu Janu</b><br>
+
+                        Kabhi kabhi sochta hoon ki words kaafi nahi hote yeh batane ke liye ki tum mere liye kya ho. Par
+                        phir bhi, main likhna chahta hoon—kyunki tumhare liye likhna bhi ek sukoon hai.
+
+                        Tum meri zindagi ka woh hissa ho jahan sab kuch thoda shaant ho jaata hai. Jab tum saath hoti
+                        ho,
+                        toh duniya ka noise kam lagta hai. Tumhari ek smile meri poori thakaan utaar deti hai, aur
+                        tumhari
+                        awaaz mere liye comfort ban chuki hai. Main shayad perfect nahi hoon, par tumhare saath main
+                        real
+                        hoon—and that matters.
+
+                        Iss saal ne humein hasaya bhi, thoda rulaya bhi, par sabse badi baat—iss saal ne mujhe tum diya.
+                        Tumhare saath chhoti chhoti baatein bhi special lagti hain. Woh random talks, woh silly fights,
+                        woh
+                        late replies par bhi intezaar… sab kuch yaad rahega.
+
+                        Naya saal aane wala hai, aur mujhe future ka exact idea nahi hai. Par ek cheez clear hai—main
+                        apne
+                        har kal mein tumhe chahta hoon. Main tumhare saath grow karna chahta hoon, tumhari khushiyon ka
+                        hissa banna chahta hoon, aur jab tum low feel karo, toh main woh insaan banna chahta hoon jahan
+                        tum
+                        bina soche aa sako.
+
+                        Main promise karta hoon ki main hamesha perfect nahi rahunga, par main honest, loyal, aur
+                        tumhara
+                        rahunga. Har din tumhe choose karunga—chahe din easy ho ya mushkil. Tum meri priority ho, meri
+                        strength ho, aur honestly… meri favorite feeling ho.
+
+                        Iss naye saal mein, main bas itna chahta hoon ki hum aur yaadein banayein, aur zyada hassein,
+                        aur
+                        thoda aur pyaar karein. Kyunki tumhare saath, even ordinary days feel like something special.😍
+
+                        Happy New Year, meri jaan.
+                        Aur haan—main tumse pyaar karta hoon. Aaj bhi, kal bhi, aur uske baad bhi ❤️
+                    </p>
+                    <div class="heart">❤️</div>
+                    <p style="margin-top:12px;">Forever Yours,<br><b>Tumhara Chota sa Pati🥰<br>Ashirbad Das</b></p>
+                </section>
+                <!-- Secret Heart -->
+                <div id="secretHeart" onclick="revealSecret()">💙</div>
+
+                <!-- Secret Message -->
+                <div id="secretMessage">
+                    💌 Surprise meri jaan…<br><br>
+                    Tum meri zindagi ka sabse khoobsurat hissa ho 💙<br>
+                    Main har din tumhe choose karta hoon — bina kisi doubt ke.<br><br>
+                    I choose you. Always. Forever. 💍
+                </div>
+
+                <footer> I Love You Velli Much Dolphi Mama 💕</footer>
+            </div>
+        </div>
+
+        <script>
+            /* Carousel */
+            let index = 0;
+            const track = document.getElementById('track');
+            const slides = track.children.length;
+
+            function moveSlide(dir) {
+                index = (index + dir + slides) % slides;
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            /* Sections */
+            function openSection(id) {
+                document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+                document.getElementById(id).style.display = 'block';
+            }
+
+            /* Countdown */
+            function updateTimer() {
+                const now = new Date();
+                const nextYear = new Date(now.getFullYear() + 1, 0, 1);
+                const diff = nextYear - now;
+
+                const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+                const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+                const m = Math.floor(diff / 1000 / 60) % 60;
+                const s = Math.floor(diff / 1000) % 60;
+
+                document.getElementById('timer').innerHTML =
+                    `${d} Days ${h} Hours ${m} Minutes ${s} Seconds ✨`;
+            }
+
+            setInterval(updateTimer, 1000);
+            updateTimer();
+            function revealSurprise() {
+                document.getElementById('surpriseBox').classList.add('show-images');
+
+                // Show blue heart after images reveal
+                setTimeout(() => {
+                    document.getElementById('secretHeart').style.display = 'inline-block';
+                }, 1200);
+
+                // Heart sparkles
+                for (let i = 0; i < 160; i++) {
+                    createHeart();
+                }
+            }
+
+        </script>
+
+</body>
+
+</html>
